@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { addUser } from './utils/userSlice'
 
 const Login = () => {
   const [emailId, setEmailid] = useState("shreya@gmail.com")
   const [password, setPassword] = useState("Shreya@321")
+  const dispatch = useDispatch();
 
   // function that will actually make an api call to login
   const handleLogin = async () => {
@@ -11,7 +14,10 @@ const Login = () => {
       const res = await axios.post("http://localhost:7777/login", {
         emailId,
         password
-      })
+      },{withCredentials:true});
+
+      console.log(res.data)
+      dispatch(addUser(res.data))
     }
     catch {
       console.error(err)
@@ -40,7 +46,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)} />
           </fieldset>
 
-          <div className="card-actions justify-end my-3">
+          <div className="card-actions justify-center my-3">
             <button className="btn btn-primary" onClick={handleLogin}>Login</button>
           </div>
         </div>
