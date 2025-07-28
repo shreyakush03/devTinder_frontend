@@ -22,7 +22,7 @@ const Login = () => {
       dispatch(addUser(res.data))
       navigate("/")
     }
-    catch {
+    catch(err) {
       console.error(err)
     }
   }
