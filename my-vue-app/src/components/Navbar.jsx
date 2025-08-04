@@ -9,15 +9,15 @@ const Navbar = () => {
   const user = useSelector((store) => store.user) //it will get user from the store 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-;  console.log(user)
+  ; 
   const handleLogout = async () => {
     try {
       const res = await axios.post(BASE_URL + "/logout",
         {},
         { withCredentials: true });
-        // clearing data from redux store
-        dispatch(removeUser()) //clears the redux store and it automatically logout and redirect to the login page
-return navigate("/login")
+      // clearing data from redux store
+      dispatch(removeUser()) //clears the redux store and it automatically logout and redirect to the login page
+      return navigate("/login")
     } catch (err) {
 
     }
@@ -27,7 +27,7 @@ return navigate("/login")
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <Link className="btn btn-ghost text-xl">DevMeet</Link>
+        <Link to="/" className="btn btn-ghost text-xl">DevMeet</Link>
       </div>
       {user && (<div className="flex gap-2">Welcome, {user.firstName}
 
